@@ -26,16 +26,16 @@ const insertData = function (message, maxColumnWidth) {
   return BAR + SPACE.repeat(timesLeft) + message + SPACE.repeat(timesRight);
 };
 
-const insertAllData = function (values, size) {
+const insertAllData = function (values, maxColumnWidth) {
   let table = [];
-  const border = getBorder('┣', '╋', '┫', values[0].length, size);
+  // const border = getBorder('┣', '╋', '┫', values[0].length, size);
 
   for (const row of values) {
     for (const column of row) {
-      table.push(insertData(column, size));
+      table.push(insertData(column, maxColumnWidth));
     }
-    
-    table.push('┃\n' + border + '\n');
+
+    table.push('┃\n' + getBorder('┣', '╋', '┫', row.length, maxColumnWidth) + '\n');
   }
 
   table.pop();
@@ -52,20 +52,14 @@ const getBorder = function (start, middle, end, columns, length) {
   return startingSegment + column.repeat(columns - 1) + endingSegment;
 };
 
-const getMaxLength = function (value1, value2) {
-  if (value2.toString().length > value1.length) {
-    return value2.toString();
-  }
-
-  return value1;
-};
-
-const getLongestElement = function (longestCandidate, elements) {
-  return elements.reduce(getMaxLength, longestCandidate);
+const findLongestString = function (longest, value) {
+  return longest.length < value.toString().length ? value.toString() : longest;
 };
 
 const getLongestLength = function (elements) {
-  return elements.reduce(getLongestElement, '').length;
+  const longestString = elements.flat().reduce(findLongestString, '');
+
+  return longestString.length;
 };
 
 const createTable = function (values) {
