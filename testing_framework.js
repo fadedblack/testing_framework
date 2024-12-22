@@ -100,15 +100,6 @@ function getMark(acutal, expected) {
   return acutal.toString() === expected.toString() ? '🟢' : '🔴';
 }
 
-function test(input, expected, tableData) {
-  const acutal = rectangle(input);
-  const mark = getMark(acutal, expected);
-
-  const testData = [mark, input, expected, acutal];
-
-  tableData.push(testData);
-}
-
 function getHeading(...inputs) {
   const heading = ["Status"].concat(...inputs);
   heading.push("Expected Output", "Actual Output");
