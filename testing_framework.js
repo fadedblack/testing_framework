@@ -28,13 +28,14 @@ const insertData = function (message, maxColumnWidth) {
 
 const insertAllData = function (values, size) {
   let table = [];
+  const border = getBorder('┣', '╋', '┫', values[0].length, size);
 
   for (const row of values) {
     for (const column of row) {
       table.push(insertData(column, size));
     }
-
-    table.push('┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n');
+    
+    table.push('┃\n' + border + '\n');
   }
 
   table.pop();
