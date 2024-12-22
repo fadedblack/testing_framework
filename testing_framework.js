@@ -92,20 +92,20 @@ const createTable = function (values) {
 
 //******************************TESTING FUNCTIONS******************************
 
-function display(table) {
+const display = function (table) {
   console.log(table);
-}
+};
 
-function getMark(acutal, expected) {
+const getMark = function (acutal, expected) {
   return acutal.toString() === expected.toString() ? '🟢' : '🔴';
-}
+};
 
-function getHeading(...inputs) {
+const getHeading = function (...inputs) {
   const heading = ["Status"].concat(...inputs);
   heading.push("Expected Output", "Actual Output");
 
   return heading;
-}
+};
 
 const mapper = function ([callbackFunction, inputs, expectedOutput]) {
   const actualOutput = callbackFunction(...inputs);
@@ -133,12 +133,12 @@ const testAllRange = function () {
   display(createTable(tableData));
 };
 
-function testSupportingFunctions() {
+const testSupportingFunctions = function () {
   testAllRange();
-}
+};
 
-function testAll() {
+const testAll = function () {
   testSupportingFunctions();
-}
+};
 
 testAll();
