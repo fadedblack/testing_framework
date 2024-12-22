@@ -16,9 +16,9 @@ const isEven = function (number) {
   return (number & 1) === 0;
 };
 
-const insertData = function (message, size) {
-  const totalSpaces = size - message.toString().length;
-  const padding = isEven(size) ? 0 : 1;
+const insertData = function (message, maxColumnWidth) {
+  const totalSpaces = maxColumnWidth - message.toString().length;
+  const padding = isEven(maxColumnWidth) ? 0 : 1;
 
   const timesLeft = Math.floor(totalSpaces / 2);
   const timesRight = Math.ceil(totalSpaces / 2) + padding;
@@ -68,12 +68,12 @@ const getLongestLength = function (elements) {
 };
 
 const createTable = function (values) {
-  const size = getLongestLength(values);
+  const maxColumnWidth = getLongestLength(values);
 
-  const table = getBorder('┏', '┳', '┓', values[0].length, size) + '\n';
-  const bottom = '┃\n' + getBorder('┗', '┻', '┛', values[0].length, size);
+  const table = getBorder('┏', '┳', '┓', values[0].length, maxColumnWidth) + '\n';
+  const bottom = '┃\n' + getBorder('┗', '┻', '┛', values[0].length, maxColumnWidth);
 
-  return table + insertAllData(values, size) + bottom;
+  return table + insertAllData(values, maxColumnWidth) + bottom;
 };
 
 //******************************TESTING FUNCTIONS******************************
