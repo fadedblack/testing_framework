@@ -26,13 +26,16 @@ const insertData = function (message, size) {
   return BAR + SPACE.repeat(timesLeft) + message + SPACE.repeat(timesRight);
 };
 
-const addData1 = function (value) {
-  return insertData(value) +
-    '┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n';
-};
+// const addData1 = function (value) {
+//   return insertData(value) +
+//     '┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n';
+// };
 
 const addData = function (values) {
-  return values.map(addData1);
+  return values.map(function (value) {
+    return insertData(value) +
+      '┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n';
+  });
 };
 
 // const insertAllData = function (values, size) {
@@ -124,7 +127,7 @@ const testRange = function (tableInputData) {
 const testAllRange = function () {
   const tableInputData = [
     [range, [0, 10, 1], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
-    [range, [0, 10, 2], [0, 2, 4, 6, 8]]
+    [range, [0, 10, 2], [0, 2, 4, 6, 8]],
   ];
 
   const tableData = testRange(tableInputData);
