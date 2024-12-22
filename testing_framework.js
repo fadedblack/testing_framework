@@ -109,10 +109,6 @@ function getHeading(...inputs) {
 
 //***********************************TESTING***********************************
 
-function printTable(tableData) {
-  display(createTable(tableData));
-}
-
 const mapper = function ([callbackFunction, inputs, expectedOutput]) {
   const actualOutput = callbackFunction(...inputs);
   const mark = getMark(actualOutput, expectedOutput);
@@ -134,7 +130,7 @@ const testAllRange = function () {
   const tableData = testRange(tableInputData);
   tableData.unshift(getHeading(["Start", "End", "Jump"]));
 
-  printTable(tableData);
+  display(createTable(tableData));
 };
 
 function testSupportingFunctions() {
