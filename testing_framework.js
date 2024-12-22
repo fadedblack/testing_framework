@@ -122,29 +122,29 @@ function printTable(tableData) {
   display(createTable(tableData));
 }
 
-function testRange(from, to, jump, expected, tableData) {
-  const acutal = range(from, to, jump);
-  const mark = getMark(acutal, expected);
+const mapper = function ([callbackFunction, inputs, expectedOutput]) {
+  const actualOutput = callbackFunction(...inputs);
+  const mark = getMark(actualOutput, expectedOutput);
 
-  const testData = [mark, from, to, jump, expected, acutal];
+  return [mark, ...inputs, expectedOutput, actualOutput];
 
-  tableData.push(testData);
-}
+};
 
-function testLeadingFunction() { //change name
-  // testRectangle();
-}
+const testRange = function (tableInputData, tableData) {
+  return tableInputData.map(mapper);
+};
 
-function testAllRange() {
-  display("Testing Range Function");
+const testAllRange = function () {
+  const tableInputData = [
+    [range, [0, 10, 1], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    [range, [0, 10, 2], [0, 2, 4, 6, 8]]
+  ];
 
-  const tableData = [getHeading(["Start", "End", "Jump"])];
-
-  testRange(0, 10, 1, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], tableData);
-  testRange(0, 10, 2, [0, 2, 4, 6, 8], tableData);
+  const tableData = testRange(tableInputData);
+  tableData.unshift(getHeading(["Start", "End", "Jump"]));
 
   printTable(tableData);
-}
+};
 
 function testSupportingFunctions() {
   testAllRange();
