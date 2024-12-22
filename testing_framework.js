@@ -107,8 +107,6 @@ function getHeading(...inputs) {
   return heading;
 }
 
-//***********************************TESTING***********************************
-
 const mapper = function ([callbackFunction, inputs, expectedOutput]) {
   const actualOutput = callbackFunction(...inputs);
   const mark = getMark(actualOutput, expectedOutput);
@@ -117,9 +115,11 @@ const mapper = function ([callbackFunction, inputs, expectedOutput]) {
 
 };
 
-const testRange = function (tableInputData, tableData) {
+const testRange = function (tableInputData) {
   return tableInputData.map(mapper);
 };
+
+//***********************************TESTING***********************************
 
 const testAllRange = function () {
   const tableInputData = [
