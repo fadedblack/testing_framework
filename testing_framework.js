@@ -26,23 +26,6 @@ const insertData = function (message, size) {
   return BAR + SPACE.repeat(timesLeft) + message + SPACE.repeat(timesRight);
 };
 
-// const addData1 = function (value) {
-//   return insertData(value) +
-//     '┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n';
-// };
-
-const addData = function (values) {
-  return values.map(function (value) {
-    return insertData(value) +
-      '┃\n' + getBorder('┣', '╋', '┫', row.length, size) + '\n';
-  });
-};
-
-// const insertAllData = function (values, size) {
-// const = function newValues = values.map(); //add size to each element
-//   let table = values.map(addData);
-// };
-
 const insertAllData = function (values, size) {
   let table = [];
 
