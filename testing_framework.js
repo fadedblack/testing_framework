@@ -22,20 +22,21 @@ const insertData = function (message, maxColumnWidth) {
 
   const timesLeft = Math.floor(totalSpaces / 2);
   const timesRight = Math.ceil(totalSpaces / 2) + padding;
+  // const timesRight = totalSpaces - timesLeft;
 
   return BAR + SPACE.repeat(timesLeft) + message + SPACE.repeat(timesRight);
 };
 
 const insertAllData = function (values, maxColumnWidth) {
   let table = [];
-  // const border = getBorder('┣', '╋', '┫', values[0].length, size);
+  const border = getBorder('┣', '╋', '┫', values[0].length, maxColumnWidth);
 
   for (const row of values) {
     for (const column of row) {
       table.push(insertData(column, maxColumnWidth));
     }
 
-    table.push('┃\n' + getBorder('┣', '╋', '┫', row.length, maxColumnWidth) + '\n');
+    table.push('┃\n' + border + '\n');
   }
 
   table.pop();
@@ -77,8 +78,8 @@ const display = function (table) {
   console.log(table);
 };
 
-const getMark = function (acutal, expected) {
-  return acutal.toString() === expected.toString() ? '🟢' : '🔴';
+const getMark = function (acutual, expected) {
+  return acutual.toString() === expected.toString() ? '🟢' : '🔴';
 };
 
 const getHeading = function (...inputs) {
@@ -96,7 +97,7 @@ const mapper = function ([callbackFunction, inputs, expectedOutput]) {
 
 };
 
-const testRange = function (tableInputData) {
+const processTests = function (tableInputData) {
   return tableInputData.map(mapper);
 };
 
@@ -108,18 +109,20 @@ const testAllRange = function () {
     [range, [0, 10, 2], [0, 2, 4, 6, 8]],
   ];
 
-  const tableData = testRange(tableInputData);
+  const tableData = processTests(tableInputData);
   tableData.unshift(getHeading(["Start", "End", "Jump"]));
 
   display(createTable(tableData));
 };
 
-const testSupportingFunctions = function () {
-  testAllRange();
+const testGroup = function (testName, testFunction) {
+  console.log("Running Test Group:", testName);
+  testFunction();
+  console.log("Completed Running Test Group:", testName);
 };
 
 const testAll = function () {
-  testSupportingFunctions();
+  testGroup("Range Function", testAllRange);
 };
 
 testAll();
