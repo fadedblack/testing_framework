@@ -19,7 +19,7 @@ const insertData = function (message, maxColumnWidth) {
 };
 
 const insertAllData = function (values, maxColumnWidth) {
-  let table = [];
+  const table = [];
   const border = getBorder(['┣', '╋', '┫'], values[0].length, maxColumnWidth);
 
   for (const row of values) {
