@@ -1,24 +1,12 @@
-const add = function (num1, num2) {
-  return num1 + num2;
-};
+const add = (x, y) => (x + y);
 
-const range = function (from, to, jump) {
-  const numbers = [];
-
-  for (let i = from; i < to; i += jump) {
-    numbers.push(i);
-  }
-
-  return numbers;
-};
 //************************************TABLE*************************************
+
 const DASH = '━';
 const BAR = '┃';
 const SPACE = ' ';
 
-const isEven = function (number) {
-  return (number & 1) === 0;
-};
+const isEven = number => (number & 1) === 0;
 
 const insertData = function (message, maxColumnWidth) {
   const totalSpaces = maxColumnWidth - message.toString().length;
@@ -32,7 +20,7 @@ const insertData = function (message, maxColumnWidth) {
 
 const insertAllData = function (values, maxColumnWidth) {
   let table = [];
-  const border = getBorder('┣', '╋', '┫', values[0].length, maxColumnWidth);
+  const border = getBorder(['┣', '╋', '┫'], values[0].length, maxColumnWidth);
 
   for (const row of values) {
     for (const column of row) {
@@ -46,7 +34,7 @@ const insertAllData = function (values, maxColumnWidth) {
   return table.join("");
 };
 
-const getBorder = function (start, middle, end, columns, length) {
+const getBorder = function ([start, middle, end], columns, length) {
   const times = Math.ceil(length / 2);
   const column = DASH.repeat(times) + middle + DASH.repeat(times);
 
@@ -67,10 +55,10 @@ const getLongestLength = function (elements) {
 };
 
 const createTable = function (values) {
-  const maxColumnWidth = getLongestLength(values);
+  let maxColumnWidth = getLongestLength(values);
 
-  const table = getBorder('┏', '┳', '┓', values[0].length, maxColumnWidth) + '\n';
-  const bottom = '┃\n' + getBorder('┗', '┻', '┛', values[0].length, maxColumnWidth);
+  const table = getBorder(['┏', '┳', '┓'], values[0].length, maxColumnWidth) + '\n';
+  const bottom = '┃\n' + getBorder(['┗', '┻', '┛'], values[0].length, maxColumnWidth);
 
   return table + insertAllData(values, maxColumnWidth) + bottom;
 };
@@ -94,7 +82,7 @@ const getHeading = function (...inputs) {
 
 const mapper = function ([callbackFunction, inputs, expectedOutput]) {
   const actualOutput = callbackFunction(...inputs);
-  const mark = getMark(actualOutput, expectedOutput);
+  const mark = getMark(actualOutput, expectedOutput); // change to lambda function 
 
   return [mark, ...inputs, expectedOutput, actualOutput];
 
