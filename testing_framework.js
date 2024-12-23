@@ -1,3 +1,7 @@
+const add = function (num1, num2) {
+  return num1 + num2;
+};
+
 const range = function (from, to, jump) {
   const numbers = [];
 
@@ -22,7 +26,6 @@ const insertData = function (message, maxColumnWidth) {
 
   const timesLeft = Math.floor(totalSpaces / 2);
   const timesRight = Math.ceil(totalSpaces / 2) + padding;
-  // const timesRight = totalSpaces - timesLeft;
 
   return BAR + SPACE.repeat(timesLeft) + message + SPACE.repeat(timesRight);
 };
@@ -103,14 +106,14 @@ const processTests = function (tableInputData) {
 
 //***********************************TESTING***********************************
 
-const testAllRange = function () {
+const testAdd = function () {
   const tableInputData = [
-    [range, [0, 10, 1], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
-    [range, [0, 10, 2], [0, 2, 4, 6, 8]],
+    [add, [2, 3], 5],
+    [add, [2, -3], -1]
   ];
 
   const tableData = processTests(tableInputData);
-  tableData.unshift(getHeading(["Start", "End", "Jump"]));
+  tableData.unshift(getHeading(["Number1", "Number2"]));
 
   display(createTable(tableData));
 };
@@ -122,7 +125,7 @@ const testGroup = function (testName, testFunction) {
 };
 
 const testAll = function () {
-  testGroup("Range Function", testAllRange);
+  testGroup("Add Function", testAdd);
 };
 
 testAll();
