@@ -1,12 +1,12 @@
-const add = (x, y) => (x + y);
+const add = (x, y) => x + y;
 
 //************************************TABLE*************************************
 
-const DASH = '━';
-const BAR = '┃';
-const SPACE = ' ';
+const DASH = "━";
+const BAR = "┃";
+const SPACE = " ";
 
-const isEven = number => (number & 1) === 0;
+const isEven = (number) => (number & 1) === 0;
 
 const insertData = function (message, maxColumnWidth) {
   const totalSpaces = maxColumnWidth - message.toString().length;
@@ -20,14 +20,14 @@ const insertData = function (message, maxColumnWidth) {
 
 const insertAllData = function (values, maxColumnWidth) {
   const table = [];
-  const border = getBorder(['┣', '╋', '┫'], values[0].length, maxColumnWidth);
+  const border = getBorder(["┣", "╋", "┫"], values[0].length, maxColumnWidth);
 
   for (const row of values) {
     for (const column of row) {
       table.push(insertData(column, maxColumnWidth));
     }
 
-    table.push('┃\n' + border + '\n');
+    table.push("┃\n" + border + "\n");
   }
 
   table.pop();
@@ -49,7 +49,7 @@ const findLongestString = function (longest, value) {
 };
 
 const getLongestLength = function (elements) {
-  const longestString = elements.flat().reduce(findLongestString, '');
+  const longestString = elements.flat().reduce(findLongestString, "");
 
   return longestString.length;
 };
@@ -57,8 +57,10 @@ const getLongestLength = function (elements) {
 const createTable = function (values) {
   let maxColumnWidth = getLongestLength(values);
 
-  const table = getBorder(['┏', '┳', '┓'], values[0].length, maxColumnWidth) + '\n';
-  const bottom = '┃\n' + getBorder(['┗', '┻', '┛'], values[0].length, maxColumnWidth);
+  const table =
+    getBorder(["┏", "┳", "┓"], values[0].length, maxColumnWidth) + "\n";
+  const bottom =
+    "┃\n" + getBorder(["┗", "┻", "┛"], values[0].length, maxColumnWidth);
 
   return table + insertAllData(values, maxColumnWidth) + bottom;
 };
@@ -70,7 +72,7 @@ const display = function (table) {
 };
 
 const getMark = function (acutual, expected) {
-  return acutual.toString() === expected.toString() ? '🟢' : '🔴';
+  return acutual.toString() === expected.toString() ? "🟢" : "🔴";
 };
 
 const getHeading = function (...inputs) {
@@ -82,10 +84,9 @@ const getHeading = function (...inputs) {
 
 const mapper = function ([callbackFunction, inputs, expectedOutput]) {
   const actualOutput = callbackFunction(...inputs);
-  const mark = getMark(actualOutput, expectedOutput); // change to lambda function 
+  const mark = getMark(actualOutput, expectedOutput); // change to lambda function
 
   return [mark, ...inputs, expectedOutput, actualOutput];
-
 };
 
 const processTests = function (tableInputData) {
@@ -97,7 +98,7 @@ const processTests = function (tableInputData) {
 const testAdd = function () {
   const tableInputData = [
     [add, [2, 3], 5],
-    [add, [2, -3], -1]
+    [add, [2, -3], -1],
   ];
 
   const tableData = processTests(tableInputData);
