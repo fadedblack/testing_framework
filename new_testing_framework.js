@@ -113,6 +113,36 @@ const testCases = [
     ],
     false,
   ],
+  // test for unequal 3D array
+  [
+    areEqual,
+    [
+      [
+        [1, [1, 2]],
+        [2, 3],
+      ],
+      [
+        [1, [1, 2]],
+        [2, 3],
+      ],
+    ],
+    true,
+  ],
+  // test for equal 3D array
+  [
+    areEqual,
+    [
+      [
+        [1, [1, 2]],
+        [2, 3],
+      ],
+      [
+        [1, [1, 3]],
+        [2, 3],
+      ],
+    ],
+    false,
+  ],
 ];
 
 test2(testCases);
