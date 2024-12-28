@@ -25,14 +25,14 @@ const evaluateOutputs = function ([func, inputs, expectedOutput]) {
   return actualOutput !== expectedOutput;
 };
 
-const test2 = function (testCases) {
+const test = function (testCases) {
   const failed = testCases.filter(evaluateOutputs);
 
   console.table(failed);
 };
 
 // test for numbers and arrays
-const testCases = [
+const arrayAndNumberTestCases = [
   // test for two equal arrays of same lengths
   [
     areEqual,
@@ -224,6 +224,6 @@ const objectTestCases = [
   ],
 ];
 
-test2(testCases);
+test(arrayAndNumberTestCases);
 
-test2(objectTestCases);
+test(objectTestCases);
