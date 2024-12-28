@@ -4,12 +4,7 @@ const areEqual = function (value1, value2) {
       return false;
     }
 
-    let output = true;
-    for (let i = 0; i < value1.length; i += 1) {
-      output = output && areEqual(value1[i], value2[i]);
-    }
-
-    return output;
+    return value1.every((element, index) => areEqual(element, value2[index]));
   }
 
   return value1 === value2;
